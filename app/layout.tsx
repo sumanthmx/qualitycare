@@ -15,10 +15,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <div>
-      <Navbar />
-      {children}
-      <Footer />
-    </div>
+    <html lang="en">
+      <body>
+        <Navbar/>
+        <main className="h-fit">{children}</main>
+        <Footer/>
+      </body>
+    </html>
   )
 }

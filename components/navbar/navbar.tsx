@@ -8,7 +8,7 @@ const Navbar = () => {
         <Image src={"/QCG_Logo_White Background.png"} alt="QCG Logo" className="h-10" height={70} width={100}/>
         <ul className="space-x-4 ml-auto">
           <li className="inline-block">
-            <Link href= "/support" className="text-sm font-helvetica-neue text-gray-700 hover:text-blue-800 mr-6 w-32"> Find a provider </Link>
+            <Link href= "/support" className="text-sm font-helvetica-neue text-gray-700 hover:text-blue-800 mr-6 w-32"> Find a specialist </Link>
             <Link href= "/how" className="text-sm font-helvetica-neue text-gray-700 hover:text-blue-800 mr-6 w-32"> How it works </Link>
             <Link href= "/about" className="text-sm font-helvetica-neue text-gray-700 hover:text-blue-800 mr-6 w-32"> About </Link>
             <Link href= "/blog" className="text-sm font-helvetica-neue text-gray-700 hover:text-blue-800 mr-14 w-32"> Blog </Link>
