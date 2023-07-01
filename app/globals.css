@@ -25,3 +25,24 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.star {
+  width: 0;
+  height: 0;
+  border-right: 50px solid transparent;
+  border-bottom: 35px solid #ffd700;
+  border-left: 50px solid transparent;
+  transform: rotate(35deg);
+}
+
+.star-inner {
+  width: 0;
+  height: 0;
+  border-right: 50px solid transparent;
+  border-bottom: 35px solid #fff;
+  border-left: 50px solid transparent;
+  transform: rotate(35deg);
+  position: absolute;
+  top: -20px;
+  left: -50px;
+}
