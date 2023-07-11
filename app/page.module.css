@@ -20,3 +20,14 @@
   top: 15px;
   left: -8px;
 }
+
+.map_img {
+  display: none;
+  opacity: 0.67;
+}
+@media only screen and (min-width: 768px) {
+  .map_img {
+    width: 55%;
+    display: block
+  }
+}

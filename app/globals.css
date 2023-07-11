@@ -46,3 +46,7 @@ body {
   top: -20px;
   left: -50px;
 }
+
+html {
+  background-color: white;
+}
