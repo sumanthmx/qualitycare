@@ -1,136 +1,365 @@
 "use client";
 import React, {useState, useEffect} from 'react';
-import Image from "next/image";
+import Question from "@/components/question/question";
 
 const MyPage = () => {
-  const [openTab, setTab] = useState('why');
+ const [openTab, setTab] = useState('patients');
+ const [openProvCategory, setProvCategory] = useState('started')
+ const [openPatCategory, setPatCategory] = useState('started')
+ const [activeAnswer, setActiveAnswer] = useState('');
+    const toggleAnswer = (answerId: string) => {
+        if (activeAnswer === answerId) {
+            setActiveAnswer('');
+        } else {
+            setActiveAnswer(answerId);
+        }
+    };
+
   return (
-    <div className = "flex flex-col min-h-screen">
-      <div className="bg-blue-950 pt-20 text-white flex flex-col items-center justify-center">
-          <h1 className="font-bold mt-[-60px] pt-10 text-3xl font-helvetica-neue">Why Quality Care Global?</h1>
-          <p className="mt-4 mx-32 text-center font-helvetica-neue">Quality Care Global is a rapidly expanding network consisting of the most
-              thoroughly screened, accredited doctors, clinics and hospitals in the world. Find the perfect healthcare providers to suit your
-            budget and medical needs, obtain treatment abroad with confidence.</p>
-          <div className="flex bottom-4 items-end justify-center flex-grow pt-10 -mb-1">
-              <button className={`${openTab === 'why' ? 'bg-white' : 'bg-gray-300 hover:bg-white'} w-72 flex items-center justify-center text-blue-950 font-helvetica-neue py-3 px-28 rounded-md mr-3`}
-              onClick={() => setTab('why')}>Why</button>
-              <button className={`${openTab === 'how' ? 'bg-white' : 'bg-gray-300 hover:bg-white'} w-72 flex items-center justify-center text-blue-950 font-helvetica-neue py-3 px-28 rounded-md mr-3`}
-              onClick={() => setTab('how')}>How</button>
-              <button className={`${openTab === 'what' ? 'bg-white' : 'bg-gray-300 hover:bg-white'} w-72 flex items-center justify-center text-blue-950 font-helvetica-neue py-3 px-28 rounded-md mr-3`}
-              onClick={() => setTab('what')}>What</button>
-          </div>
-      </div>
-        {openTab === 'why' && <div className="bg-white py-20 text-blue-950 flex flex-col items-center justify-center">
-            <p className="mt-0 mx-36 text-center font-helvetica-neue">At Quality Care Global, we believe that everyone deserves access to quality healthcare,
-                regardless of their location or financial situation. Our mission is to connect patients with the best medical facilities and healthcare professionals
-                worldwide, so you can receive the care you need at prices you can afford.
-            </p>
-            <p className="mt-8 mx-36 text-center font-helvetica-neue">
-                We help you navigate the complexities of international healthcare, from finding the right treatment and doctor to arranging travel and accommodations.
-                With our extensive network of accredited clinics, hospitals, and specialists, you can rest assured that you'll be in good hands.
-            </p>
-      </div>}
-        {openTab === 'how' && <div className="bg-white py-20 text-blue-950 flex flex-col justify-center">
-        <ul className="list-decimal flex flex-col space-y-4 ml-24">
-          <li className="relative pl-6 py-2 flex">
-            <div className="w-10 h-10 flex items-center justify-center bg-blue-950 rounded-md text-white text-center font-bold text-lg">01</div>
-            <div>
-              <h2 className="ml-4 mt-2 font-helvetica-neue font-bold text-lg">Share Your Requirements</h2>
-                <p className="flex align-text-top ml-4 mt-3 font-helvetica-neue text-sm font-bold">What kind of specific treatment do you need? What's your concerns?
-                What specific experience or reputation do you look for?</p>
-                <p className="flex align-text-top ml-4 mt-3 font-helvetica-neue text-md">Begin by letting us know your healthcare needs, preferences, and any specific
-                    criteria you have in mind. Our expert team will use this information to identify the most suitable healthcare providers for you.</p>
+    <div className = "flex flex-col min-h-screen relative mx-auto">
+        <div className = "bg-blue-950">
+            <div className = "pt-6 sm:pt-12 container relative mx-auto overflow-hidden">
+                <p className = "text-white text-center font-bold text-2xl">Quality Care Global</p>
+                <p className = "text-white text-center text-lg mt-2">Help Center</p>
+                <div className="flex gap-3 justify-center pt-10 -mb-4 sm:-mb-1">
+                    <button
+                      className={`${openTab === 'patients' ? 'bg-white' : 'bg-slate-200 hover:bg-white'} w-1/2 md:w-96 md:h-14 flex items-center justify-center text-blue-950 font-helvetica-neue py-2 px-6 md:px-10 rounded-md mb-3 md:mb-0`}
+                      onClick={() => setTab('patients')}
+                    >Patients</button>
+                    <button
+                      className={`${openTab === 'providers' ? 'bg-white' : 'bg-slate-200 hover:bg-white'} w-1/2 md:w-96 md:h-14 flex items-center justify-center text-blue-950 font-helvetica-neue py-2 px-6 md:px-10 rounded-md mb-3 md:mb-0`}
+                      onClick={() => setTab('providers')}
+                    >Care Providers</button>
+                </div>
             </div>
-          </li>
-          <li className="relative pl-6 py-2 flex">
-            <div className="w-10 h-10 flex items-center justify-center bg-blue-950 rounded-md text-white text-center font-bold text-lg">02</div>
-            <div>
-              <h2 className="ml-4 mt-2 font-helvetica-neue font-bold text-lg">Receive Tailored Options</h2>
-                <p className="flex align-text-top ml-4 mt-3 font-helvetica-neue text-sm font-bold">We'll notify you with a status report concerning your
-                    request within a few days.</p>
-                <p className="flex align-text-top ml-4 mt-3 font-helvetica-neue text-md">We understand that every individual has unique healthcare needs. Therefore, we
-                    meticulously curate a list of the best medical professionals and facilities, specifically tailored to your requirements. This personalized approach
-                    ensures that you receive options that align with your expectations and medical needs.</p>
+        </div>
+        {openTab === 'patients' && <div className = "bg-white">
+            <div className = "h-92 py-16 mx-auto text-helvetica-neue text-blue-950 container">
+                <p className="text-center font-bold text-2xl ml-0 sm:ml-12 sm:text-left px-4 sm:px-0">Frequently Asked Questions</p>
+                <div className='hidden sm:block'>
+                    <div className='flex relative mt-10'>
+                        <div className='ml-12 hidden sm:block w-0 sm:w-1/5 mt-3'>
+                            <div>
+                                <button className={`mt-1 text-lg text-left ${openPatCategory === 'started' ? 'font-bold' : ''}`} onClick={() => setPatCategory('started')}>Getting started</button>
+                            </div>
+                            <div>
+                                <button className={`mt-1 text-lg text-left ${openPatCategory === 'before' ? 'font-bold' : ''}`} onClick={() => setPatCategory('before')}>Before the trip</button>
+                            </div>
+                            <div>
+                                <button className={`mt-1 text-lg text-left ${openPatCategory === 'ps' ? 'font-bold' : ''}`} onClick={() => setPatCategory('ps')}>Payment and Security</button>
+                            </div>
+                        </div>
+                        <div className='w-full sm:w-4/5'>
+                            {openPatCategory === 'started' && <div className="max-w-3xl mx-auto">
+                                 <Question question={'What is Quality Care Global?'} answer={'Quality Care Global is a rapidly expanding network consisting of the screened, ' +
+                                     'accredited doctors, clinics and hospitals in the world. Find the perfect healthcare provider to suit your budget and medical needs, obtain ' +
+                                     'treatment abroad with confidence. '} toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                                <Question question={'How do I get started with Quality Care Global?'} answer={'To get started, simply visit our website and fill out the online inquiry ' +
+                                    'form. Provide us with your contact information, medical condition, preferred destination, and any additional requirements. Our team will promptly ' +
+                                    'review your request and get in touch with you to discuss your options.'} toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                                <Question question={'How do you select hospitals and medical facilities for your network?'} answer={'We carefully evaluate and select hospitals and medical ' +
+                                    'facilities based on factors such as accreditation, quality of care, success rates, patient feedback, and the expertise of the medical staff. We aim to ' +
+                                    'partner with institutions that have a strong reputation for providing excellent care and maintaining high standards of patient safety.'}
+                                    toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                                <Question question={'Can you help with the visa application process?'} answer={'Yes, we can provide assistance with the visa application process. ' +
+                                    'Once your hospital booking is confirmed, we will guide you through the necessary steps and provide you with the required documents for your visa application.'}
+                                     toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                                <Question question={'How much does it cost to use Hospital Booking Abroad Agency services?'} answer={'Our service fees vary depending on the complexity of your ' +
+                                    'medical case and the destination you choose. We will provide you with a detailed quote after reviewing your request and understanding your specific needs.'}
+                                     toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                                <Question question={'Are there any hidden fees or additional charges?'} answer={'We are transparent about our fees and will inform you of any costs upfront. ' +
+                                    'However, it\'s important to note that your final medical bill will be determined by the hospital and may include additional charges for services such as ' +
+                                    'diagnostic tests, medications, and post-operative care.'}
+                                     toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                                <Question question={'Can you help with travel arrangements and accommodations?'} answer={'Yes, we can help you with travel arrangements, accommodations, ' +
+                                    'and local transportation. We have partnerships with travel agencies and hotels to offer you discounted rates and a seamless travel experience.'}
+                                     toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                                <Question question={'Can I bring a companion or family member with me?'} answer={'Absolutely! We understand the importance of having a support system ' +
+                                    'during medical treatments. We can assist you in making arrangements for your companion, including accommodations and visa applications.'}
+                                     toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                            </div>}
+                            {openPatCategory === 'before' && <div className="max-w-3xl mx-auto">
+                                 <Question question={'How do I make a payment?'} answer={'We provide consultation assistance under partner agreements with the clinics. ' +
+                                     'You only make a payment in the hospital where you\'ve received care.'}
+                                     toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                                <Question question={'What happens if I need to cancel or reschedule my appointment?'} answer={'We understand that plans can change, and we will do our best to ' +
+                                    'accommodate any changes you need to make. Please contact us as soon as possible if you need to cancel or reschedule your appointment, and we will discuss ' +
+                                    'your options based on the hospital\'s cancellation policy.'}
+                                     toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                                <Question question={'Is my personal information safe with Quality Care Global?'} answer={'Your privacy is our top priority. We adhere to strict data protection ' +
+                                    'regulations and will not share your personal information with any third parties without your consent. For more information, please review our privacy policy.'}
+                                     toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                                <Question question={'How can I contact Quality Care Global if I have further questions?'} answer={'We are here to help! You can reach us by phone, email, or ' +
+                                    'through the contact form on our website. Our dedicated customer support team is available to assist you with any questions or concerns you may have.'}
+                                     toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                                <Question question={'How long does it take to receive a response after submitting my inquiry?'} answer={'We strive to respond to all inquiries within 24 to 48 ' +
+                                    'hours. Our team will carefully review your request and get in touch with you as soon as possible to discuss your options and provide you with a ' +
+                                    'personalized recommendation.'}
+                                     toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                                <Question question={'Do you provide language assistance for non-English speakers?'} answer={'Yes, we offer language assistance for non-English speakers. ' +
+                                    'Our team includes multilingual support staff and, if needed, we can arrange for a professional medical interpreter to ensure clear communication ' +
+                                    'between you and the medical staff at the hospital.'}
+                                     toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                                <Question question={'Can I choose my doctor or specialist?'} answer={'Yes, you can choose your preferred doctor or specialist from our network of hospitals. ' +
+                                    'We will provide you with information on the expertise and experience of our affiliated medical professionals to help you make an informed decision.'}
+                                     toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                                <Question question={'How do I obtain medical records and reports after my treatment?'} answer={'We can assist you in obtaining your medical records and ' +
+                                    'reports from the hospital. Once your treatment is complete, we will coordinate with the hospital staff to ensure that you receive all necessary documents, ' +
+                                    'either in hard copy or digital format.'}
+                                     toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                            </div>}
+                            {openPatCategory === 'ps' && <div className="max-w-3xl mx-auto">
+                                 <Question question={'Can you help me find post-operative care and rehabilitation services?'} answer={'Yes, we can help you find appropriate post-operative care ' +
+                                     'and rehabilitation services, either in the country where you received your treatment or back in your home country. Our team will work with you to identify the ' +
+                                     'best options based on your individual needs and preferences.'}
+                                     toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                                <Question question={'What if I experience complications or require follow-up care after returning home?'} answer={'We are committed to ensuring your well-being ' +
+                                    'throughout the entire process, including after you return home. If you experience any complications or require follow-up care, please contact us immediately. ' +
+                                    'We will coordinate with the treating hospital and your local healthcare providers to ensure you receive the necessary care and support.'}
+                                     toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                                <Question question={'Are the hospitals in your network accredited and recognized internationally?'} answer={'Yes, the hospitals in our network are accredited by internationally recognized organizations such as Joint Commission International (JCI), ' +
+                                    'International Organization for Standardization (ISO), and other relevant healthcare accreditation bodies. We partner with institutions that maintain high ' +
+                                    'standards of patient safety, quality of care, and medical expertise.'}
+                                     toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                                <Question question={'How do you ensure the quality of treatment at the hospitals in your network?'} answer={'We continuously monitor and evaluate the quality of care provided by the ' +
+                                    'hospitals in our network. Our team conducts regular assessments, reviewing patient feedback, success rates, and overall performance to ensure that our partners maintain the highest standards of care.'}
+                                     toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                                <Question question={'Can you help me estimate the cost of my medical treatment abroad?'} answer={'Yes, we can provide you with a cost estimate for your medical ' +
+                                    'treatment based on the information you provide in your inquiry. This estimate will include the costs of hospital services, doctor\'s fees, and any additional ' +
+                                    'services you may require, such as diagnostic tests or post-operative care.'}
+                                     toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                                <Question question={'Will my insurance cover the cost of medical treatment abroad?'} answer={'Coverage for medical treatment abroad depends on your individual insurance policy. We ' +
+                                    'recommend that you contact your insurance provider to determine your coverage for international medical care. If needed, we can assist you in obtaining any necessary documentation ' +
+                                    'to support your insurance claim.'}
+                                     toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                                <Question question={'Can I receive multiple treatment quotes from different hospitals?'} answer={'Yes, we can provide you with multiple treatment quotes from different hospitals within ' +
+                                    'our network. This will allow you to compare options and make an informed decision based on factors such as cost, location, and the expertise of the medical staff.'}
+                                     toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                                <Question question={'Do you offer any guarantees on the success of the medical treatment?'} answer={'While we cannot guarantee the outcome of any medical treatment, ' +
+                                    'we are committed to connecting you with hospitals and medical professionals with a proven track record of success in their respective fields. We will provide you ' +
+                                    'with all the necessary information to help you make an informed decision about your care.'}
+                                     toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                            </div>}
+                        </div>
+                    </div>
+                </div>
+                <div className="sm:hidden px-4">
+                    <p className="text-left text-xl font-semibold pt-6 pb-4 ml-3">Getting Started</p>
+                    <Question question={'What is Quality Care Global?'} answer={'Quality Care Global is a rapidly expanding network consisting of the screened, ' +
+                         'accredited doctors, clinics and hospitals in the world. Find the perfect healthcare provider to suit your budget and medical needs, obtain ' +
+                         'treatment abroad with confidence. '} toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                    <Question question={'How do I get started with Quality Care Global?'} answer={'To get started, simply visit our website and fill out the online inquiry ' +
+                        'form. Provide us with your contact information, medical condition, preferred destination, and any additional requirements. Our team will promptly ' +
+                        'review your request and get in touch with you to discuss your options.'} toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                    <Question question={'How do you select hospitals and medical facilities for your network?'} answer={'We carefully evaluate and select hospitals and medical ' +
+                        'facilities based on factors such as accreditation, quality of care, success rates, patient feedback, and the expertise of the medical staff. We aim to ' +
+                        'partner with institutions that have a strong reputation for providing excellent care and maintaining high standards of patient safety.'}
+                        toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                    <Question question={'Can you help with the visa application process?'} answer={'Yes, we can provide assistance with the visa application process. ' +
+                        'Once your hospital booking is confirmed, we will guide you through the necessary steps and provide you with the required documents for your visa application.'}
+                         toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                    <Question question={'How much does it cost to use Hospital Booking Abroad Agency services?'} answer={'Our service fees vary depending on the complexity of your ' +
+                        'medical case and the destination you choose. We will provide you with a detailed quote after reviewing your request and understanding your specific needs.'}
+                         toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                    <Question question={'Are there any hidden fees or additional charges?'} answer={'We are transparent about our fees and will inform you of any costs upfront. ' +
+                        'However, it\'s important to note that your final medical bill will be determined by the hospital and may include additional charges for services such as ' +
+                        'diagnostic tests, medications, and post-operative care.'}
+                         toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                    <Question question={'Can you help with travel arrangements and accommodations?'} answer={'Yes, we can help you with travel arrangements, accommodations, ' +
+                        'and local transportation. We have partnerships with travel agencies and hotels to offer you discounted rates and a seamless travel experience.'}
+                         toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                    <Question question={'Can I bring a companion or family member with me?'} answer={'Absolutely! We understand the importance of having a support system ' +
+                        'during medical treatments. We can assist you in making arrangements for your companion, including accommodations and visa applications.'}
+                         toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                    <p className="text-left text-xl font-semibold ml-3 py-4">Before the trip</p>
+                    <Question question={'How do I make a payment?'} answer={'We provide consultation assistance under partner agreements with the clinics. ' +
+                         'You only make a payment in the hospital where you\'ve received care.'}
+                         toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                    <Question question={'What happens if I need to cancel or reschedule my appointment?'} answer={'We understand that plans can change, and we will do our best to ' +
+                        'accommodate any changes you need to make. Please contact us as soon as possible if you need to cancel or reschedule your appointment, and we will discuss ' +
+                        'your options based on the hospital\'s cancellation policy.'}
+                         toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                    <Question question={'Is my personal information safe with Quality Care Global?'} answer={'Your privacy is our top priority. We adhere to strict data protection ' +
+                        'regulations and will not share your personal information with any third parties without your consent. For more information, please review our privacy policy.'}
+                         toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                    <Question question={'How can I contact Quality Care Global if I have further questions?'} answer={'We are here to help! You can reach us by phone, email, or ' +
+                        'through the contact form on our website. Our dedicated customer support team is available to assist you with any questions or concerns you may have.'}
+                         toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                    <Question question={'How long does it take to receive a response after submitting my inquiry?'} answer={'We strive to respond to all inquiries within 24 to 48 ' +
+                        'hours. Our team will carefully review your request and get in touch with you as soon as possible to discuss your options and provide you with a ' +
+                        'personalized recommendation.'}
+                         toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                    <Question question={'Do you provide language assistance for non-English speakers?'} answer={'Yes, we offer language assistance for non-English speakers. ' +
+                        'Our team includes multilingual support staff and, if needed, we can arrange for a professional medical interpreter to ensure clear communication ' +
+                        'between you and the medical staff at the hospital.'}
+                         toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                    <Question question={'Can I choose my doctor or specialist?'} answer={'Yes, you can choose your preferred doctor or specialist from our network of hospitals. ' +
+                        'We will provide you with information on the expertise and experience of our affiliated medical professionals to help you make an informed decision.'}
+                         toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                    <Question question={'How do I obtain medical records and reports after my treatment?'} answer={'We can assist you in obtaining your medical records and ' +
+                        'reports from the hospital. Once your treatment is complete, we will coordinate with the hospital staff to ensure that you receive all necessary documents, ' +
+                        'either in hard copy or digital format.'}
+                         toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                    <p className="text-left text-xl font-semibold ml-3 py-4">Payment and Security</p>
+                    <Question question={'Can you help me find post-operative care and rehabilitation services?'} answer={'Yes, we can help you find appropriate post-operative care ' +
+                         'and rehabilitation services, either in the country where you received your treatment or back in your home country. Our team will work with you to identify the ' +
+                         'best options based on your individual needs and preferences.'}
+                         toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                    <Question question={'What if I experience complications or require follow-up care after returning home?'} answer={'We are committed to ensuring your well-being ' +
+                        'throughout the entire process, including after you return home. If you experience any complications or require follow-up care, please contact us immediately. ' +
+                        'We will coordinate with the treating hospital and your local healthcare providers to ensure you receive the necessary care and support.'}
+                         toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                    <Question question={'Are the hospitals in your network accredited and recognized internationally?'} answer={'Yes, the hospitals in our network are accredited by internationally recognized organizations such as Joint Commission International (JCI), ' +
+                        'International Organization for Standardization (ISO), and other relevant healthcare accreditation bodies. We partner with institutions that maintain high ' +
+                        'standards of patient safety, quality of care, and medical expertise.'}
+                         toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                    <Question question={'How do you ensure the quality of treatment at the hospitals in your network?'} answer={'We continuously monitor and evaluate the quality of care provided by the ' +
+                        'hospitals in our network. Our team conducts regular assessments, reviewing patient feedback, success rates, and overall performance to ensure that our partners maintain the highest standards of care.'}
+                         toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                    <Question question={'Can you help me estimate the cost of my medical treatment abroad?'} answer={'Yes, we can provide you with a cost estimate for your medical ' +
+                        'treatment based on the information you provide in your inquiry. This estimate will include the costs of hospital services, doctor\'s fees, and any additional ' +
+                        'services you may require, such as diagnostic tests or post-operative care.'}
+                         toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                    <Question question={'Will my insurance cover the cost of medical treatment abroad?'} answer={'Coverage for medical treatment abroad depends on your individual insurance policy. We ' +
+                        'recommend that you contact your insurance provider to determine your coverage for international medical care. If needed, we can assist you in obtaining any necessary documentation ' +
+                        'to support your insurance claim.'}
+                         toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                    <Question question={'Can I receive multiple treatment quotes from different hospitals?'} answer={'Yes, we can provide you with multiple treatment quotes from different hospitals within ' +
+                        'our network. This will allow you to compare options and make an informed decision based on factors such as cost, location, and the expertise of the medical staff.'}
+                         toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                    <Question question={'Do you offer any guarantees on the success of the medical treatment?'} answer={'While we cannot guarantee the outcome of any medical treatment, ' +
+                        'we are committed to connecting you with hospitals and medical professionals with a proven track record of success in their respective fields. We will provide you ' +
+                        'with all the necessary information to help you make an informed decision about your care.'}
+                         toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                </div>
             </div>
-          </li>
-          <li className="relative pl-6 py-2 flex">
-            <div className="w-10 h-10 flex items-center justify-center bg-blue-950 rounded-md text-white text-center font-bold text-lg">03</div>
-            <div>
-              <h2 className="ml-4 mt-2 font-helvetica-neue font-bold text-lg">Connect with Trusted Healthcare Providers</h2>
-                <p className="flex align-text-top ml-4 mt-3 font-helvetica-neue text-sm font-bold">We'll introduce you to your doctors, and then address any concerns
-                    or questions you may have throughout your treatment.</p>
-                <p className="flex align-text-top ml-4 mt-3 font-helvetica-neue text-md">Quality Care Global partners with reputable healthcare providers worldwide,
-                    ensuring that you have access to a vast network of accredited professionals. Select your preferred provider from our carefully curated list, get
-                    your quote and embark on your journey towards better health with confidence.</p>
+        </div>}
+        {openTab === 'providers' && <div className = "bg-white">
+            <div className = "h-92 py-16 mx-auto text-helvetica-neue text-blue-950 container px-4 sm:px-0">
+                <p className="text-center font-bold text-2xl ml-0 sm:ml-12 sm:text-left">Frequently Asked Questions</p>
+                <div className='hidden sm:block'>
+                    <div className='flex relative mt-10'>
+                        <div className='ml-12 hidden sm:block sm:w-1/5 mt-3'>
+                            <div>
+                                <button className={`mt-1 text-lg text-left ${openProvCategory === 'started' ? 'font-bold' : ''}`} onClick={() => setProvCategory('started')}>Getting started</button>
+                            </div>
+                            <div>
+                                <button className={`mt-1 text-lg text-left ${openProvCategory === 'before' ? 'font-bold' : ''}`} onClick={() => setProvCategory('before')}>Before the trip</button>
+                            </div>
+                            <div>
+                                <button className={`mt-1 text-lg text-left ${openProvCategory === 'ps' ? 'font-bold' : ''}`} onClick={() => setProvCategory('ps')}>Payment and Security</button>
+                            </div>
+                        </div>
+                        <div className='sm:w-4/5'>
+                            {openProvCategory === 'started' && <div className="max-w-3xl mx-auto">
+                                <Question question={'How can I join Quality Care Global as a healthcare provider?'}
+                                           answer={'To join Quality Care Global as a healthcare provider, please navigate to our \'Join Us\' page and fill out the required form. ' +
+                                               'We will then contact you to gather further information about your practice and guide you through the verification process.'}
+                                           toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                                <Question question={'What are the benefits of joining Quality Care Global?'}
+                                           answer={'As a member of Quality Care Global, you will be part of a trusted global network of healthcare providers. Our platform ' +
+                                               'can help increase your visibility among potential patients from around the world. We also provide tools and resources to assist ' +
+                                               'you in managing patient appointments, records, and feedback.'}
+                                          toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                                <Question question={'What is the verification process for healthcare providers?'}
+                                           answer={'Our verification process includes checking credentials such as medical degree, board certification, licensing, insurance, and ' +
+                                               'professional reputation. We also verify that you maintain good standing within your medical community. This rigorous process helps to ' +
+                                               'ensure the trustworthiness of our platform for patients seeking medical care abroad.'}
+                                          toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                            </div>}
+                            {openProvCategory === 'before' && <div className="max-w-3xl mx-auto">
+                                <Question question={'How can patients book appointments with me through Quality Care Global?'}
+                                           answer={'Patients can view your profile, services, and availability on our platform, and then book an appointment directly. You will receive a ' +
+                                               'notification and can then confirm the appointment at your convenience.'}
+                                           toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                                <Question question={'How does Quality Care Global handle patient data?'}
+                                           answer={'We understand the importance of data security, particularly when it comes to sensitive medical information. ' +
+                                               'Quality Care Global adheres strictly to data protection regulations. Patient data is only shared with the healthcare ' +
+                                               'provider the patient has chosen for their care, and only with the patient\'s consent.'}
+                                          toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                                <Question question={'Can I update my profile information and services offered on Quality Care Global?'}
+                                           answer={'Yes, healthcare providers can update their profiles, including their services, qualifications, ' +
+                                               'and availability. We recommend keeping your profile up-to-date to ensure that potential patients have ' +
+                                               'the most accurate information about your practice.'}
+                                          toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                            </div>}
+                            {openProvCategory === 'ps' && <div className="max-w-3xl mx-auto">
+                                <Question question={'What if a patient leaves a negative review on my profile?'}
+                                           answer={'Quality Care Global values honest and constructive feedback. We encourage healthcare providers to respond professionally ' +
+                                               'to negative reviews and use them as an opportunity to improve. If you believe a review is false or violates our guidelines, ' +
+                                               'please contact us, and we will investigate the matter.'}
+                                          toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                                <Question question={'How does Quality Care Global promote its platform and the healthcare providers listed?'}
+                                           answer={'Quality Care Global utilizes a multi-channel marketing strategy to promote our platform and listed healthcare providers. ' +
+                                               'This includes search engine optimization, targeted online advertising, social media marketing, partnerships with related ' +
+                                               'organizations, and more.'}
+                                          toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                            </div>}
+                        </div>
+                    </div>
+                </div>
+                <div className="sm:hidden px-4">
+                    <p className="text-left text-xl font-semibold pt-6 pb-4 ml-3">Getting Started</p>
+                    <Question question={'How can I join Quality Care Global as a healthcare provider?'}
+                               answer={'To join Quality Care Global as a healthcare provider, please navigate to our \'Join Us\' page and fill out the required form. ' +
+                                   'We will then contact you to gather further information about your practice and guide you through the verification process.'}
+                               toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                    <Question question={'What are the benefits of joining Quality Care Global?'}
+                               answer={'As a member of Quality Care Global, you will be part of a trusted global network of healthcare providers. Our platform ' +
+                                   'can help increase your visibility among potential patients from around the world. We also provide tools and resources to assist ' +
+                                   'you in managing patient appointments, records, and feedback.'}
+                              toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                    <Question question={'What is the verification process for healthcare providers?'}
+                               answer={'Our verification process includes checking credentials such as medical degree, board certification, licensing, insurance, and ' +
+                                   'professional reputation. We also verify that you maintain good standing within your medical community. This rigorous process helps to ' +
+                                   'ensure the trustworthiness of our platform for patients seeking medical care abroad.'}
+                              toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                    <p className="text-left text-xl font-semibold ml-3 py-4">Before the trip</p>
+                    <Question question={'How can patients book appointments with me through Quality Care Global?'}
+                               answer={'Patients can view your profile, services, and availability on our platform, and then book an appointment directly. You will receive a ' +
+                                   'notification and can then confirm the appointment at your convenience.'}
+                               toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                    <Question question={'How does Quality Care Global handle patient data?'}
+                               answer={'We understand the importance of data security, particularly when it comes to sensitive medical information. ' +
+                                   'Quality Care Global adheres strictly to data protection regulations. Patient data is only shared with the healthcare ' +
+                                   'provider the patient has chosen for their care, and only with the patient\'s consent.'}
+                              toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                    <Question question={'Can I update my profile information and services offered on Quality Care Global?'}
+                               answer={'Yes, healthcare providers can update their profiles, including their services, qualifications, ' +
+                                   'and availability. We recommend keeping your profile up-to-date to ensure that potential patients have ' +
+                                   'the most accurate information about your practice.'}
+                              toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                    <p className="text-left text-xl font-semibold ml-3 py-4">Payment and Security</p>
+                    <Question question={'What if a patient leaves a negative review on my profile?'}
+                               answer={'Quality Care Global values honest and constructive feedback. We encourage healthcare providers to respond professionally ' +
+                                   'to negative reviews and use them as an opportunity to improve. If you believe a review is false or violates our guidelines, ' +
+                                   'please contact us, and we will investigate the matter.'}
+                              toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                    <Question question={'How does Quality Care Global promote its platform and the healthcare providers listed?'}
+                               answer={'Quality Care Global utilizes a multi-channel marketing strategy to promote our platform and listed healthcare providers. ' +
+                                   'This includes search engine optimization, targeted online advertising, social media marketing, partnerships with related ' +
+                                   'organizations, and more.'}
+                              toggleAnswer={toggleAnswer} activeAnswer={activeAnswer} half={false}></Question>
+                </div>
             </div>
-          </li>
-          <li className="relative pl-6 py-2 flex">
-            <div className="w-10 h-10 flex items-center justify-center bg-blue-950 rounded-md text-white text-center font-bold text-lg">04</div>
-            <div>
-              <h2 className="ml-4 mt-2 font-helvetica-neue font-bold text-lg">Experience Quality Care</h2>
-                <p className="flex align-text-top ml-4 mt-3 font-helvetica-neue text-md">Our ultimate goal is to provide you with a hassle-free healthcare experience.
-                    From the initial consultation to post-treatment care, Quality Care Global is dedicated to offering comprehensive support throughout your medical journey.
-                    Trust in our expertise and global connections to deliver the highest standard of care, no matter where your healthcare journey takes you.</p>
+        </div>}
+        <div className = "bg-slate-200">
+            <div className = "h-54 font-helvetica-neue py-12 mx-auto container">
+                <p className="text-center text-blue-950 font-bold text-2xl mt-2">Stay Updated</p>
+                <p className="text-center text-blue-950 text-md ml-16 mr-16 mt-4">Stay inspired and informed
+                    with the newest health and wellness updates, delivered to your inbox daily.</p>
+                <div className="flex items-center justify-center mt-6">
+                    <input type="text" placeholder="Type your email address"
+                           className="border border-gray-300 rounded-l h-12 px-6
+                           focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+                    <button
+                        className="text-center bg-blue-950 text-white rounded-r
+                        px-4 h-12 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        Sign Up
+                    </button>
+                </div>
             </div>
-          </li>
-        </ul>
-      </div>}
-        {openTab === 'what' && <div className="bg-white py-20 text-blue-950 flex flex-col items-center justify-center">
-        <ul className="list-decimal flex flex-col space-y-4 ml-24">
-          <li className="relative pl-6 py-2 flex">
-            <div className="w-10 h-10 flex items-center justify-center bg-blue-950 rounded-md text-white text-center font-bold text-lg">01</div>
-            <div>
-              <div className="ml-4 mt-2 font-helvetica-neue font-bold text-lg">Access to specialized treatments</div>
-                <div className="flex align-text-top ml-4 mt-3 font-helvetica-neue text-md">Some countries may offer advanced or specialized treatments that are unavailable
-                    or have long waiting lists in your home country. With Quality Care Global, skip the waiting times and access the most advanced treatments without
-                    compromising on quality.</div>
-            </div>
-          </li>
-          <li className="relative pl-6 py-2 flex">
-            <div className="w-10 h-10 flex items-center justify-center bg-blue-950 rounded-md text-white text-center font-bold text-lg">02</div>
-            <div>
-              <div className="ml-4 mt-2 font-helvetica-neue font-bold text-lg">Cost Savings</div>
-                <div className="flex align-text-top ml-4 mt-3 font-helvetica-neue text-md">We understand that medical treatments in some countries can be significantly more
-                    affordable than in others, Quality Care Global allows you to save on healthcare expenses without compromising on quality.</div>
-            </div>
-          </li>
-          <li className="relative pl-6 py-2 flex">
-            <div className="w-10 h-10 flex items-center justify-center bg-blue-950 rounded-md text-white text-center font-bold text-lg">03</div>
-            <div>
-              <div className="ml-4 mt-2 font-helvetica-neue font-bold text-lg">Better care and privacy</div>
-                <div className="flex align-text-top ml-4 mt-3 font-helvetica-neue text-md">You may choose medical treatment in countries with
-                    advanced healthcare systems and specialists to receive top-quality care while ensuring privacy for sensitive or personal medical procedures. </div>
-            </div>
-          </li>
-          <li className="relative pl-6 py-2 flex">
-            <div className="w-10 h-10 flex items-center justify-center bg-blue-950 rounded-md text-white text-center font-bold text-lg">04</div>
-            <div>
-              <div className="ml-4 mt-2 font-helvetica-neue font-bold text-lg">Any Location</div>
-                <div className="flex align-text-top ml-4 mt-3 font-helvetica-neue text-md">A global network allows us to connect you with trusted healthcare providers in any country.
-                    We have collaborated with reliable healthcare providers in Mexico, Switzerland, Canada, the United States, Germany, Turkey, Brazil, the United Kingdom, Mexico,
-                    Thailand, and more. We can typically locate healthcare providers in these locations in under a week, and we can always connect you with the best provider for your
-                    needs anywhere in the world.</div>
-            </div>
-          </li>
-        </ul>
-      </div>}
-     <div className="relative bg-sky-100 h-112 mb-24">
-         <div className="mt-10 ml-20 font-helvetica-neue text-3xl font-bold text-blue-950"
-         style={{paddingRight: '50vw' }}>Have any question? Our team is happy to help</div>
-         <div className="mt-6 ml-20 font-helvetica-neue text-md mb-8 text-blue-950"
-         style={{paddingRight: '50vw' }}>This is filler text. This is filler text. This is filler text.
-         This is filler text. This is filler text. This is filler text. This is filler text. This is filler text.
-         This is filler text. This is filler text. This is filler text. This is filler text. This is filler text.
-         This is filler text. This is filler text. This is filler text. This is filler text. This is filler text.
-         This is filler text. This is filler text. This is filler text. This is filler text. </div>
-         <a href="/"
-              className="text-sm font-helvetica-neue text-gray-300 bg-blue-950 px-4 py-2 mt-16 ml-20 rounded text-white w-32"
-            >
-              List your clinic
-            </a>
-        <Image src={"/unsplash.jpg"} alt="Mask Girl Picture" className="
-        absolute right-0 bottom-[-48px] mr-16" width='500' height='500' style={{ maxWidth: '25%', maxHeight: '100%'}}/>
-     </div>
+        </div>
     </div>
   );
 };

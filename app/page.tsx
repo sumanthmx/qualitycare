@@ -3,11 +3,13 @@ import React, {useState} from "react";
 import Carousel from "@/components/carousel/carousel";
 import Image from "next/image";
 import styles from './page.module.css';
+import Card from "@/components/card/card";
 
 export default function Home() {
  const [openTab, setTab] = useState('why');
  const imgFolder = ['/carousel_photos/hpc1.jpeg', '/carousel_photos/hpc2.jpeg',
      '/carousel_photos/hpc3.jpeg', '/carousel_photos/hpc4.jpeg', '/carousel_photos/hpc5.jpeg']
+
  const paras = ['We provide comprehensive, clear, and accurate information about our partnered healthcare providers. ' +
  'You\'ll have access to details about their qualifications, specializations, associated medical facilities, and more. We also ' +
  'share complete details about treatment options, costs, potential risks, and success rates wherever available',
@@ -18,13 +20,15 @@ export default function Home() {
      'medical journeys.', 'We\'re here for you, always. Whether you have a question, a concern, or need assistance at any stage of your journey, ' +
      'our dedicated customer support team is just a click away.', 'We understand that medical care doesn\'t end at the operation theatre. That\'s ' +
      'why we provide detailed information about post-treatment care, including recovery, rehabilitation, and follow-up consultations.']
- const names = ['Transparency', 'Verifiable Certifications and Accreditations',
+
+    const names = ['Transparency', 'Verifiable Certifications and Accreditations',
      'Authentic Patient Testimonials and Reviews', 'Round-the-Clock Customer Support',
      'Post-Treatment Care Information']
+
   return (
     <div className = "flex flex-col min-h-screen relative mx-auto">
         <div className = "bg-white">
-            <div className = "py-10 sm:py-16 flex flex-col sm:flex-row mx-auto container relative items-center">
+            <div className = "py-10 sm:py-16 flex flex-col sm:flex-row mx-auto container relative items-center overflow-hidden">
                 <div className="w-full sm:w-1/2 font-helvetica-neue sm:ml-10 px-4 sm:mr-0 text-center sm:text-left z-10">
                     <span className="text-blue-400 text-2xl sm:text-3xl font-bold">Your Gateway <span className="text-blue-950 text-2xl sm:text-3xl font-bold">To World Class Health Care</span></span>
                     <p className="mt-6 text-blue-950 text-md">Quality Care Global is a rapidly expanding network consisting of the screened,
@@ -90,8 +94,72 @@ export default function Home() {
                 <Carousel images={imgFolder} bodies={paras} names={names}/>
             </div>
         </div>
+        <div className="bg-white">
+          <div className="mx-auto container py-8">
+            <p className="sm:ml-6 mx-4 mt-2 text-blue-950 text-2xl font-helvetica-neue font-bold text-center sm:text-left">We create a better future</p>
+            <div className="flex flex-wrap items-center">
+              <div className="w-full sm:w-1/3 flex justify-center mt-6 sm:mt-10">
+                <img src="/unsplash.jpg" className="w-56 h-80 sm:ml-20" alt="Image" />
+              </div>
+              <div className="w-full sm:w-2/3">
+                <p className="sm:ml-6 mx-4 sm:mr-4 mt-3 sm:mt-8 mb-0 sm:mb-4 text-blue-950 text-md text-center sm:text-left sm:ml-20 md:ml-28 lg:ml-20 font-helvetica-neue">
+                  Quality Care Global connects you with premier medical treatments worldwide, helping you bypass long waits and access unavailable procedures at home.
+                  We allow you to reduce your healthcare costs without compromising on quality. By enabling you to seek treatment in countries with advanced healthcare
+                  systems, we ensure top-tier care, added privacy, and comfort during sensitive procedures. With Quality Care Global, superior healthcare is within your
+                  reach, affordable, and comfortable.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="bg-white relative text-helvetic-neue">
+            <p className="text-3xl text-white text-center font-bold mt-14 relative z-10">The Hidden Benefits of Getting Treatment Abroad</p>
+            <p className="text-md text-white text-center mt-6 relative z-10">Find out how medical tourists are enriching their treatment options
+            by accessing globally recognized facilities</p>
+            <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mx-auto px-10 pt-24 pb-4">
+                <Card imagePath={'/unsplash.jpg'} title ={'Kenan Asadov'} name={'Eren Biri'} preview={'It is long established that a reader will be distracted by the readable content of a page when looking at its layout. ' +
+                    'It is a long established fact that. content of a page when looking at its layout.'} readingTime = {'10 minutes'}
+                      category={'Health'} subcategory={'Children\'s Health'}/>
+                <Card imagePath={'/unsplash.jpg'} title ={'Kenan Asadov'} name={'Eren Biri'} preview={'It is long established that a reader will be distracted by the readable content of a page when looking at its layout. ' +
+                    'It is a long established fact that. content of a page when looking at its layout.'} readingTime = {'10 minutes'}
+                      category={'Health'} subcategory={'Children\'s Health'}/>
+                <Card imagePath={'/unsplash.jpg'} title ={'Kenan Asadov'} name={'Eren Biri'} preview={'It is long established that a reader will be distracted by the readable content of a page when looking at its layout. ' +
+                    'It is a long established fact that. content of a page when looking at its layout.'} readingTime = {'10 minutes'}
+                      category={'Health'} subcategory={'Children\'s Health'}/>
+                <Card imagePath={'/unsplash.jpg'} title ={'Kenan Asadov'} name={'Eren Biri'} preview={'It is long established that a reader will be distracted by the readable content of a page when looking at its layout. ' +
+                    'It is a long established fact that. content of a page when looking at its layout.'} readingTime = {'10 minutes'}
+                      category={'Health'} subcategory={'Children\'s Health'}/>
+                <Card imagePath={'/unsplash.jpg'} title ={'Kenan Asadov'} name={'Eren Biri'} preview={'It is long established that a reader will be distracted by the readable content of a page when looking at its layout. ' +
+                    'It is a long established fact that. content of a page when looking at its layout.'} readingTime = {'10 minutes'}
+                      category={'Health'} subcategory={'Children\'s Health'}/>
+                <Card imagePath={'/unsplash.jpg'} title ={'Kenan Asadov'} name={'Eren Biri'} preview={'It is long established that a reader will be distracted by the readable content of a page when looking at its layout. ' +
+                    'It is a long established fact that. content of a page when looking at its layout.'} readingTime = {'10 minutes'}
+                      category={'Health'} subcategory={'Children\'s Health'}/>
+                </div>
+            <div className="absolute w-full h-1/2 top-0 left-0 z-0 bg-blue-950">
+            </div>
+        </div>
+        <div className="bg-white">
+          <div className="h-54 font-helvetica-neue py-8 mx-auto container">
+            <p className="sm:ml-6 mx-4 mt-2 text-blue-950 text-2xl font-helvetica-neue font-bold text-center sm:text-left">They trusted us</p>
+            <div className="flex flex-wrap justify-center sm:justify-start px-6">
+              <div className="w-1/2 sm:w-1/4 flex justify-center">
+                <img src="health_icons/bluecrossblueshield.webp" alt="Blue Cross" className="w-36 sm:w-48 h-28 sm:h-36 mr-6"/>
+              </div>
+              <div className="w-1/2 sm:w-1/4 flex justify-center">
+                <img src="health_icons/cigna-logo-og.jpeg" alt="Cigna" className="w-40 sm:w-56 h-28 sm:h-36 mr-6"/>
+              </div>
+              <div className="w-1/2 sm:w-1/4 flex justify-center">
+                <img src="health_icons/United-Healthcare-Logo.png" alt="United" className="w-40 sm:w-56 h-28 sm:h-40 mr-6"/>
+              </div>
+              <div className="w-1/2 sm:w-1/4 flex justify-center">
+                <img src="health_icons/Aetna-Logo.png" alt="Aetna" className="w-40 sm:w-56 h-28 sm:h-36"/>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className = "bg-slate-200">
-            <div className = "h-54 font-helvetica-neue py-8 mx-auto container">
+            <div className = "h-54 font-helvetica-neue py-12 mx-auto container">
                 <p className="text-center text-blue-950 font-bold text-2xl mt-2">Stay Updated</p>
                 <p className="text-center text-blue-950 text-md ml-16 mr-16 mt-4">Stay inspired and informed
                     with the newest health and wellness updates, delivered to your inbox daily.</p>
