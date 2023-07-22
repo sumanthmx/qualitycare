@@ -1,10 +1,14 @@
 'use client'
 import React, {useState, ChangeEvent, FormEvent} from 'react';
-import styles from "@/app/providers/providers.module.css";
+import Dropdown from "@/components/dropdown/dropdown";
 
 const MyPage = () => {
   const [openTab, setTab] = useState('patients');
-  const [dropdownOption, setOption] = useState('Inquiries');
+  const [dropdownOption, setOption] = useState('inquiries');
+
+  const handleOptionChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setOption(event.target.value);
+  };
   const handleSubmit = (event: FormEvent<any>) => {
     event.preventDefault();
     console.log(event.currentTarget.email.value)
@@ -23,11 +27,11 @@ const MyPage = () => {
                     </div>
                     <div className="flex gap-3 justify-center pt-10 -mb-4 sm:-mb-1">
                         <button
-                          className={`${openTab === 'patients' ? 'bg-white' : 'bg-slate-200 hover:bg-white'} w-1/2 md:w-96 md:h-14 flex items-center justify-center text-blue-950 font-helvetica-neue py-2 px-6 md:px-10 rounded-md mb-3 md:mb-0`}
+                          className={`${openTab === 'patients' ? 'bg-white text-blue-950' : 'bg-blue-950 text-white sm:bg-slate-200 sm:text-blue-950 hover:bg-white hover:text-blue-950'} w-1/2 md:w-96 md:h-14 flex items-center justify-center font-helvetica-neue py-2 px-6 md:px-10 rounded-sm sm:rounded-md mb-3 md:mb-0`}
                           onClick={() => setTab('patients')}
                         >Patients</button>
                         <button
-                          className={`${openTab === 'providers' ? 'bg-white' : 'bg-slate-200 hover:bg-white'} w-1/2 md:w-96 md:h-14 flex items-center justify-center text-blue-950 font-helvetica-neue py-2 px-6 md:px-10 rounded-md mb-3 md:mb-0`}
+                          className={`${openTab === 'providers' ? 'bg-white text-blue-950' : 'bg-blue-950 text-white sm:bg-slate-200 sm:text-blue-950 hover:bg-white hover:text-blue-950'} w-1/2 md:w-96 md:h-14 flex items-center justify-center font-helvetica-neue py-2 px-6 md:px-10 rounded-sm sm:rounded-md mb-3 md:mb-0`}
                           onClick={() => setTab('providers')}
                         >Care Providers</button>
                     </div>
@@ -39,7 +43,14 @@ const MyPage = () => {
                             <form className="flex flex-col max-w-md mx-auto p-4" onSubmit={handleSubmit}>
                             <p className="text-blue-950 text-3xl sm:text-4xl font-bold text-center sm:text-left tracking-normal sm:tracking-wide">We are here for you</p>
                             <p className="text-blue-950 text-md text-center sm:text-left pb-10 pt-4">Our friendly team would love to hear from you</p>
-                              <div className="mb-4 flex gap-3">
+                               <div className="mb-4">
+                                <label htmlFor="category" className="block text-gray-700 font-bold mb-2">I want to contact for</label>
+                                   <Dropdown selections={['inquiries', 'suggestions', 'correspondence']} dropdownOption={dropdownOption} selectOption={handleOptionChange}/>
+                                   {dropdownOption === 'inquiries' && <p className="mt-3 mb-2 text-black">Inquiries - If you have any questions about our products or services, please don't hesitate to ask. Our team is ready to provide you with the information you need.</p>}
+                                   {dropdownOption === 'suggestions' && <p className="mt-3 mb-2 text-black">Suggestions - We continually strive to improve our offerings and service. If you have any suggestions or feedback, we would be pleased to hear from you.</p>}
+                                   {dropdownOption === 'correspondence' && <p className="mt-3 mb-2 text-black">General Correspondence - We welcome all forms of communication. Whether you have a specific concern or simply wish to discuss our services, we're here to assist.</p>}
+                               </div>
+                               <div className="mb-4 flex gap-3">
                                <div>
                                 <label htmlFor="name" className="block text-gray-700 font-bold mb-2">First Name</label>
                                 <input
@@ -109,7 +120,14 @@ const MyPage = () => {
                             <form className="flex flex-col max-w-md mx-auto p-4" onSubmit={handleSubmit}>
                             <p className="text-blue-950 text-3xl sm:text-4xl font-bold text-center sm:text-left tracking-normal sm:tracking-wide">Let's have a call</p>
                             <p className="text-blue-950 text-md text-center sm:text-left pb-10 pt-4">Our friendly team would love to hear from you</p>
-                              <div className="mb-4 flex gap-3">
+                               <div className="mb-4">
+                                <label htmlFor="category" className="block text-gray-700 font-bold mb-2">I want to contact for</label>
+                                  <Dropdown selections={['inquiries', 'suggestions', 'correspondence']} dropdownOption={dropdownOption} selectOption={handleOptionChange}/>
+                                   {dropdownOption === 'inquiries' && <p className="mt-3 mb-2 text-black">Inquiries - If you have any questions about our products or services, please don't hesitate to ask. Our team is ready to provide you with the information you need.</p>}
+                                   {dropdownOption === 'suggestions' && <p className="mt-3 mb-2 text-black">Suggestions - We continually strive to improve our offerings and service. If you have any suggestions or feedback, we would be pleased to hear from you.</p>}
+                                   {dropdownOption === 'correspondence' && <p className="mt-3 mb-2 text-black">General Correspondence - We welcome all forms of communication. Whether you have a specific concern or simply wish to discuss our services, we're here to assist.</p>}
+                               </div>
+                               <div className="mb-4 flex gap-3">
                                <div>
                                 <label htmlFor="name" className="block text-gray-700 font-bold mb-2">First Name</label>
                                 <input

@@ -23,11 +23,11 @@ const MyPage = () => {
                 <p className = "text-white text-center text-lg mt-2">Help Center</p>
                 <div className="flex gap-3 justify-center pt-10 -mb-4 sm:-mb-1">
                     <button
-                      className={`${openTab === 'patients' ? 'bg-white' : 'bg-slate-200 hover:bg-white'} w-1/2 md:w-96 md:h-14 flex items-center justify-center text-blue-950 font-helvetica-neue py-2 px-6 md:px-10 rounded-md mb-3 md:mb-0`}
+                      className={`${openTab === 'patients' ? 'bg-white text-blue-950' : 'bg-blue-950 text-white sm:bg-slate-200 sm:text-blue-950 hover:bg-white hover:text-blue-950'} w-1/2 md:w-96 md:h-14 flex items-center justify-center text-blue-950 font-helvetica-neue py-2 px-6 md:px-10 rounded-sm sm:rounded-md mb-3 md:mb-0`}
                       onClick={() => setTab('patients')}
                     >Patients</button>
                     <button
-                      className={`${openTab === 'providers' ? 'bg-white' : 'bg-slate-200 hover:bg-white'} w-1/2 md:w-96 md:h-14 flex items-center justify-center text-blue-950 font-helvetica-neue py-2 px-6 md:px-10 rounded-md mb-3 md:mb-0`}
+                      className={`${openTab === 'providers' ? 'bg-white text-blue-950' : 'bg-blue-950 text-white sm:bg-slate-200 sm:text-blue-950 hover:bg-white hover:text-blue-950'} w-1/2 md:w-96 md:h-14 flex items-center justify-center text-blue-950 font-helvetica-neue py-2 px-6 md:px-10 rounded-sm sm:rounded-md mb-3 md:mb-0`}
                       onClick={() => setTab('providers')}
                     >Care Providers</button>
                 </div>

@@ -1,0 +1,25 @@
+.custom-shadow {
+  position: relative;
+}
+
+.custom-shadow::before,
+.custom-shadow::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Customize the shadow as needed */
+}
+
+.custom-shadow::before {
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+}
+
+.custom-shadow::after {
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+}

@@ -9,9 +9,6 @@ interface QuestionProps {
 }
 const Question: React.FC<QuestionProps> = ({question, answer, toggleAnswer, activeAnswer, half}) =>
 {
-    /** const handleClick = (event) => {
-        toggleAnswer(event.target.value); // Pass the selected option to the parent component
-    }; **/
     return <div className={`my-4 flex flex-col ${half === true ? 'items-center justify-center' : ''}`}>
         <button
           className={`${half === true ? 'w-3/4 lg:w-1/2' : 'w-full'} flex items-center justify-between bg-white hover:bg-gray-200 text-blue-950 font-semibold py-2 px-4 rounded relative`}
